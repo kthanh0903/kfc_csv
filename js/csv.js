@@ -6,7 +6,7 @@
 // Danh sách các cột dạng số để tự động ép kiểu
 const NUMERIC_COLUMNS = new Set([
   'price', 'popularity', 'rating', 'discount_value',
-  'min_order', 'combo_price', 'lat', 'lng'
+  'min_order', 'max_discount', 'combo_price', 'lat', 'lng'
 ]);
 
 /**

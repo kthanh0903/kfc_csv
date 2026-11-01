@@ -89,7 +89,7 @@ export function removeFromCart(id) {
  * @param {Object} state - Chứa { menu, combos, promotions }
  * @param {Array} cartItems
  * @param {Object|null} appliedPromo - Khuyến mãi đang chọn
- * @returns {{ subtotal: number, discount: number, total: number, count: number, validPromo: boolean }}
+ * @returns {{ subtotal: number, discount: number, total: number, count: number, validPromo: boolean, promoMessage: string }}
  */
 export function getCartTotal(state, cartItems, appliedPromo = null) {
   let subtotal = 0;
@@ -108,18 +108,22 @@ export function getCartTotal(state, cartItems, appliedPromo = null) {
 
   let discount = 0;
   let validPromo = false;
+  let promoMessage = '';
 
-  if (appliedPromo && subtotal >= appliedPromo.min_order) {
-    validPromo = true;
-    if (appliedPromo.discount_type === 'percent') {
-      discount = Math.floor((subtotal * appliedPromo.discount_value / 100) / 1000) * 1000;
-    } else {
-      discount = Math.min(appliedPromo.discount_value, subtotal);
+  if (appliedPromo) {
+    promoMessage = getPromoAvailabilityError(appliedPromo);
+    if (!promoMessage && subtotal < appliedPromo.min_order) {
+      promoMessage = `Đơn hàng chưa đạt mức tối thiểu ${formatPrice(appliedPromo.min_order)}.`;
+    }
+
+    if (!promoMessage) {
+      validPromo = true;
+      discount = calculatePromoDiscount(subtotal, appliedPromo);
     }
   }
 
   const total = Math.max(0, subtotal - discount);
-  return { subtotal, discount, total, count, validPromo };
+  return { subtotal, discount, total, count, validPromo, promoMessage };
 }
 
 /**
@@ -141,22 +145,20 @@ export function applyPromoCode(code, subtotal, promotions) {
     return { ok: false, message: 'Mã khuyến mãi không hợp lệ hoặc không tồn tại.' };
   }
 
-  const now = new Date();
-  const todayStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
-
-  if (todayStr < promo.start_date) {
-    return { ok: false, message: `Mã chỉ áp dụng từ ngày ${promo.start_date}.` };
-  }
-
-  if (todayStr > promo.end_date) {
-    return { ok: false, message: 'Mã khuyến mãi này đã hết hạn sử dụng.' };
+  const availabilityError = getPromoAvailabilityError(promo);
+  if (availabilityError) {
+    return { ok: false, message: availabilityError };
   }
 
   if (subtotal < promo.min_order) {
-    const minOrderFormatted = new Intl.NumberFormat('vi-VN').format(promo.min_order) + ' ₫';
-    return { ok: false, message: `Đơn hàng chưa đạt mức tối thiểu ${minOrderFormatted}.` };
+    return { ok: false, message: `Đơn hàng chưa đạt mức tối thiểu ${formatPrice(promo.min_order)}.` };
   }
 
+  const discount = calculatePromoDiscount(subtotal, promo);
+  return { ok: true, promo, discount, message: `Áp dụng mã ${promo.code} thành công!` };
+}
+
+function calculatePromoDiscount(subtotal, promo) {
   let discount = 0;
   if (promo.discount_type === 'percent') {
     discount = Math.floor((subtotal * promo.discount_value / 100) / 1000) * 1000;
@@ -164,7 +166,31 @@ export function applyPromoCode(code, subtotal, promotions) {
     discount = Math.min(promo.discount_value, subtotal);
   }
 
-  return { ok: true, promo, discount, message: `Áp dụng mã ${promo.code} thành công!` };
+  if (promo.max_discount > 0) {
+    discount = Math.min(discount, promo.max_discount);
+  }
+  return Math.min(discount, subtotal);
+}
+
+function getPromoAvailabilityError(promo, now = new Date()) {
+  const month = now.getMonth() + 1;
+  const day = now.getDate();
+  const todayStr = `${now.getFullYear()}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+
+  if (todayStr < promo.start_date) {
+    return `Mã chỉ áp dụng từ ngày ${promo.start_date}.`;
+  }
+  if (todayStr > promo.end_date) {
+    return 'Mã khuyến mãi này đã hết hạn sử dụng.';
+  }
+  if (promo.date_rule === 'day_equals_month' && day !== month) {
+    return 'Mã chỉ áp dụng vào ngày trùng tháng (1/1, 2/2, ... 12/12).';
+  }
+  return '';
+}
+
+function formatPrice(amount) {
+  return new Intl.NumberFormat('vi-VN').format(amount) + ' ₫';
 }
 
 /**

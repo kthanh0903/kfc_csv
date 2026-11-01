@@ -79,7 +79,18 @@ function createPromoCard(promo) {
   const safeTitle = escapeHTML(promo.title);
   const safeDesc = escapeHTML(promo.description);
   const safeCode = escapeHTML(promo.code);
-  const minOrderText = formatPrice(promo.min_order);
+  const promoDetails = [];
+  if (promo.min_order > 0) {
+    promoDetails.push(`Đơn từ: ${formatPrice(promo.min_order)}`);
+  }
+  if (promo.max_discount) {
+    promoDetails.push(`Tối đa: ${formatPrice(promo.max_discount)}`);
+  }
+  if (promo.date_rule === 'day_equals_month') {
+    promoDetails.push('Áp dụng ngày trùng tháng');
+  } else {
+    promoDetails.push(`HSD: ${escapeHTML(promo.end_date)}`);
+  }
 
   return `
     <article class="promo-card">
@@ -87,8 +98,7 @@ function createPromoCard(promo) {
       <h3 class="promo-title">${safeTitle}</h3>
       <p class="promo-desc">${safeDesc}</p>
       <div class="promo-meta">
-        <span class="promo-min">Đơn từ: ${minOrderText}</span>
-        <span class="promo-date">HSD: ${escapeHTML(promo.end_date)}</span>
+        ${promoDetails.map(detail => `<span>${detail}</span>`).join('')}
       </div>
       <div class="promo-action">
         <code class="promo-code">${safeCode}</code>
@@ -331,7 +341,7 @@ export function renderCart(cartItems, state, appliedPromo) {
   const promoStatusEl = document.getElementById('cart-promo-status');
   const checkoutBtn = document.getElementById('btn-checkout');
 
-  const { subtotal, discount, total, count, validPromo } = getCartTotal(state, cartItems, appliedPromo);
+  const { subtotal, discount, total, count, validPromo, promoMessage } = getCartTotal(state, cartItems, appliedPromo);
 
   if (badge) {
     badge.textContent = String(count);
@@ -346,7 +356,7 @@ export function renderCart(cartItems, state, appliedPromo) {
     if (appliedPromo && validPromo) {
       promoStatusEl.innerHTML = `<span class="promo-applied-tag">✅ Đã áp dụng: ${escapeHTML(appliedPromo.code)} (-${formatPrice(discount)})</span>`;
     } else if (appliedPromo && !validPromo) {
-      promoStatusEl.innerHTML = `<span class="promo-warning-tag">⚠️ Đơn chưa đủ ${formatPrice(appliedPromo.min_order)}</span>`;
+      promoStatusEl.innerHTML = `<span class="promo-warning-tag">⚠️ ${escapeHTML(promoMessage)}</span>`;
     } else {
       promoStatusEl.innerHTML = '';
     }
