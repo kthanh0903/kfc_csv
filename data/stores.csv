@@ -1,0 +1,5 @@
+id,name,district,address,phone,open_time,close_time,lat,lng
+S001,Cửa hàng Mẫu Trung Tâm,Quận 1,"123 Đường Mẫu, Quận 1",0280000001,08:00,22:00,10.7769,106.7009
+S002,Cửa hàng Mẫu Phú Nhuận,Phú Nhuận,"45 Đường Mẫu, Phú Nhuận",0280000002,09:00,22:00,10.7990,106.6800
+S003,Cửa hàng Mẫu Thủ Đức,Thủ Đức,"789 Đường Mẫu, Thủ Đức",0280000003,08:30,21:30,10.8500,106.7700
+S004,Cửa hàng Mẫu Bình Thạnh,Bình Thạnh,"12 Đường Mẫu, Bình Thạnh",0280000004,07:30,23:00,10.8100,106.7100

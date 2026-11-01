@@ -1,0 +1,13 @@
+id,name,category,price,description,image,tags,popularity,is_available
+M001,Gà Rán Giòn (1 miếng),chicken,36000,Da giòn rụm thịt mọng nước,,bestseller,98,1
+M002,Gà Cay Xé Lưỡi (1 miếng),chicken,38000,Lớp tẩm ớt cay nồng khó cưỡng,,spicy|bestseller,95,1
+M003,Gà Không Xương (5 miếng),chicken,49000,Phi lê gà chiên giòn chấm sốt,,new,80,1
+M004,Cánh Gà Sốt Mật Ong (3 cánh),chicken,52000,"Ngọt, mặn, giòn hài hoà",,,76,1
+M005,Burger Gà Giòn,burger,45000,Phi lê gà giòn với xà lách và sốt mayo,,bestseller,90,1
+M006,Burger Gà Cay,burger,49000,Phiên bản cay cho người mê vị nồng,,spicy,70,1
+M007,Khoai Tây Chiên (vừa),side,25000,Vàng giòn rắc muối,,,85,1
+M008,Khoai Nghiền Sốt,side,22000,Mềm mịn với sốt nâu đậm vị,,,60,1
+M009,Salad Bắp Cải,side,20000,Giòn mát giải ngấy,,,40,0
+M010,Nước Ngọt (vừa),drink,15000,Ướp lạnh sảng khoái,,,88,1
+M011,Trà Đào,drink,25000,Thanh mát với miếng đào,,new,55,1
+M012,Kem Sundae Socola,dessert,18000,Kem vani phủ sốt socola,,,65,1

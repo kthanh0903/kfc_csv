@@ -1,0 +1,5 @@
+id,name,items,combo_price,image,is_featured
+C001,Combo Một Mình,M001:2|M007:1|M010:1,99000,,1
+C002,Combo Cặp Đôi,M001:3|M002:1|M007:2|M010:2,189000,,1
+C003,Combo Gia Đình,M001:6|M003:1|M007:3|M010:4,349000,,1
+C004,Combo Burger,M005:1|M007:1|M010:1,75000,,0

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gà Rán KFC - Giòn Rụm Từng Miếng, Nóng Hổi Mỗi Ngày</title>
+  <meta name="description" content="Thưởng thức gà rán vàng giòn chuẩn vị, combo siêu tiết kiệm và nhận nhiều mã khuyến mãi hấp dẫn mỗi ngày.">
+  
+  <!-- Open Graph / Facebook / Zalo -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Gà Rán KFC - Giòn Rụm Từng Miếng, Nóng Hổi Mỗi Ngày">
+  <meta property="og:description" content="Khám phá thực đơn gà rán, burger, combo ưu đãi cực hời và tìm cửa hàng gần bạn nhất!">
+  <meta property="og:image" content="images/KFC_logo-image.png">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍗</text></svg>">
+
+  <!-- Google Fonts: Oswald (Tiêu đề) + Be Vietnam Pro (Nội dung) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==================== S1. HEADER ==================== -->
+  <header id="header" class="header">
+    <div class="container header-container">
+      <a href="#" class="logo-wrapper" aria-label="Trang chủ Gà Rán">
+        <img src="images/KFC_logo-image.png" alt="KFC Logo" class="header-logo-img" width="100" height="38" onerror="this.style.display='none'; document.getElementById('logo-text-fallback').style.display='inline-block';">
+        <span id="logo-text-fallback" class="logo-text" style="display: none;">GÀ GIÒN 🍗</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav id="nav-menu" class="nav-menu" aria-label="Điều hướng chính">
+        <a href="#promotions" class="nav-link">Khuyến mãi</a>
+        <a href="#menu" class="nav-link">Thực đơn</a>
+        <a href="#combos" class="nav-link">Combo</a>
+        <a href="#stores" class="nav-link">Cửa hàng</a>
+        <a href="#reviews" class="nav-link">Đánh giá</a>
+        <a href="#booking" class="nav-link">Đặt bàn</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="header-actions">
+        <button id="btn-open-cart" class="cart-icon-btn" aria-label="Mở giỏ hàng">
+          🛒
+          <span id="cart-badge" class="cart-badge" aria-label="Số món trong giỏ">0</span>
+        </button>
+        <button id="btn-hamburger" class="hamburger-btn" aria-label="Menu" aria-expanded="false">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main>
+    <!-- ==================== S2. HERO BANNER ==================== -->
+    <section id="hero" class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="hero-badge">Ưu đãi độc quyền hôm nay 🔥</span>
+          <h1 class="hero-title">GIÒN RỤM TỪNG MIẾNG <br><span class="highlight">NÓNG HỔI MỖI NGÀY!</span></h1>
+          <p class="hero-slogan">Thưởng thức hương vị gà rán chuẩn vị với lớp da giòn tan, thịt ngọt mọng nước cùng bộ sốt đậm đà khó cưỡng.</p>
+          <div class="hero-cta">
+            <a href="#menu" class="btn btn-primary">Đặt ngay 🍗</a>
+            <a href="#promotions" class="btn btn-secondary">Xem khuyến mãi 🎁</a>
+          </div>
+
+          <!-- Hero Countdown -->
+          <div class="hero-countdown-box">
+            <p class="countdown-title">Ưu đãi nổi bật sắp hết hạn trong:</p>
+            <div id="hero-countdown" class="countdown-grid" aria-live="polite">
+              <!-- JS render đồng hồ đếm ngược -->
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <img src="assets/img/hero-chicken.svg" alt="Miếng gà rán giòn rụm thơm ngon" class="hero-illustration" width="400" height="400">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== S3. KHUYẾN MÃI ==================== -->
+    <section id="promotions" class="section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Khuyến Mãi Đang Chạy</h2>
+          <p class="section-subtitle">Sao chép mã ngay để nhận ưu đãi giảm giá cực sốc khi đặt món!</p>
+        </div>
+        <div class="promotions-scroll-wrapper">
+          <div id="promotions-list" class="promotions-list">
+            <!-- JS chèn promo cards từ promotions.csv -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== S4. THỰC ĐƠN ==================== -->
+    <section id="menu">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Thực Đơn Hấp Dẫn</h2>
+          <p class="section-subtitle">Đa dạng lựa chọn từ gà rán giòn, burger đẫm sốt đến đồ uống sảng khoái.</p>
+        </div>
+
+        <!-- Controls -->
+        <div class="menu-controls">
+          <div id="menu-category-tabs" class="category-tabs" role="tablist" aria-label="Danh mục thực đơn">
+            <button class="tab-btn active" data-category="all" role="tab" aria-selected="true">Tất cả món</button>
+            <button class="tab-btn" data-category="chicken" role="tab" aria-selected="false">🍗 Gà Rán</button>
+            <button class="tab-btn" data-category="burger" role="tab" aria-selected="false">🍔 Burger</button>
+            <button class="tab-btn" data-category="side" role="tab" aria-selected="false">🍟 Món Phụ</button>
+            <button class="tab-btn" data-category="drink" role="tab" aria-selected="false">🥤 Đồ Uống</button>
+            <button class="tab-btn" data-category="dessert" role="tab" aria-selected="false">🍦 Tráng Miệng</button>
+          </div>
+
+          <div class="filter-bar">
+            <div class="search-input-wrap">
+              <input type="text" id="menu-search-input" class="search-input" placeholder="🔍 Tìm món theo tên..." aria-label="Tìm kiếm món">
+            </div>
+            <select id="menu-sort-select" class="sort-select" aria-label="Sắp xếp thực đơn">
+              <option value="popular">🔥 Mức độ phổ biến</option>
+              <option value="price-asc">💵 Giá tăng dần</option>
+              <option value="price-desc">💵 Giá giảm dần</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Grid -->
+        <div id="menu-grid" class="menu-grid">
+          <!-- JS chèn danh sách món từ menu.csv -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== S5. COMBO TIẾT KIỆM ==================== -->
+    <section id="combos" class="section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Combo Siêu Tiết Kiệm</h2>
+          <p class="section-subtitle">Ăn cùng bạn bè hay gia đình thả ga với mức giá cực kỳ ưu đãi!</p>
+        </div>
+        <div id="combos-grid" class="combos-grid">
+          <!-- JS chèn danh sách combo từ combos.csv -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== S7. CỬA HÀNG ==================== -->
+    <section id="stores">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Hệ Thống Cửa Hàng</h2>
+          <p class="section-subtitle">Tìm cửa hàng gần bạn nhất để ghé thưởng thức trực tiếp hoặc gọi giao hàng nhanh chóng.</p>
+        </div>
+
+        <div class="stores-filter-wrap">
+          <select id="store-district-filter" aria-label="Lọc theo quận">
+            <option value="all">Tất cả quận/huyện</option>
+          </select>
+        </div>
+
+        <div id="stores-grid" class="stores-grid">
+          <!-- JS chèn danh sách cửa hàng từ stores.csv -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== S8. ĐÁNH GIÁ KHÁCH HÀNG ==================== -->
+    <section id="reviews" class="section-alt">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Khách Hàng Nói Gì?</h2>
+          <p class="section-subtitle">Hơn 10.000+ tín đồ gà rán đã yêu thích và hài lòng mỗi ngày.</p>
+        </div>
+        <div class="reviews-container">
+          <div id="reviews-track" class="reviews-track">
+            <!-- JS chèn đánh giá từ reviews.csv -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== S9. FORM ĐẶT BÀN ==================== -->
+    <section id="booking">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Đặt Bàn & Nhận Ưu Đãi</h2>
+          <p class="section-subtitle">Đặt bàn trước để giữ chỗ đẹp và nhận ngay quà tặng bất ngờ khi đến quán!</p>
+        </div>
+
+        <div class="booking-card">
+          <form id="booking-form" class="booking-form" novalidate>
+            <div class="form-group">
+              <label for="booking-name" class="form-label">Họ và tên *</label>
+              <input type="text" id="booking-name" name="full_name" class="form-input" placeholder="Nguyễn Văn A" required>
+              <span id="error-full_name" class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="booking-phone" class="form-label">Số điện thoại *</label>
+              <input type="tel" id="booking-phone" name="phone" class="form-input" placeholder="0901234567" required>
+              <span id="error-phone" class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="booking-email" class="form-label">Email (không bắt buộc)</label>
+              <input type="email" id="booking-email" name="email" class="form-input" placeholder="email@example.com">
+              <span id="error-email" class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="booking-store" class="form-label">Chi nhánh cửa hàng *</label>
+              <select id="booking-store" name="store_id" class="form-select" required>
+                <option value="">-- Chọn cửa hàng --</option>
+              </select>
+              <span id="error-store_id" class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="booking-date" class="form-label">Ngày đến *</label>
+              <input type="date" id="booking-date" name="date" class="form-input" required>
+              <span id="error-date" class="field-error"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="booking-time" class="form-label">Giờ đến *</label>
+              <input type="time" id="booking-time" name="time" class="form-input" required>
+              <span id="error-time" class="field-error"></span>
+            </div>
+
+            <div class="form-group form-full-width">
+              <label for="booking-guests" class="form-label">Số lượng khách *</label>
+              <input type="number" id="booking-guests" name="guests" class="form-input" min="1" max="50" value="2" required>
+              <span id="error-guests" class="field-error"></span>
+            </div>
+
+            <div class="booking-actions form-full-width">
+              <button type="submit" class="btn btn-primary">Xác nhận đặt bàn 🍗</button>
+              <button type="button" id="btn-export-bookings" class="btn btn-secondary">
+                📥 Tải danh sách đặt bàn (CSV)
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== S10. FOOTER ==================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="images/KFC_logo-image.png" alt="KFC Logo" class="footer-logo-img" width="100" height="38" style="margin-bottom: 12px;" onerror="this.style.display='none';">
+          <h3>GÀ GIÒN KFC</h3>
+          <p class="footer-desc">Hương vị gà rán tuyệt hảo, giòn tan đến miếng cuối cùng. Phục vụ tận tâm, giao hàng nhanh chóng.</p>
+          <p style="color: var(--color-secondary); font-size: 0.9rem;">Hotline đặt món: <strong>1900 6886</strong></p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Khám phá</h4>
+          <ul class="footer-links">
+            <li><a href="#promotions">Mã khuyến mãi</a></li>
+            <li><a href="#menu">Thực đơn đặc sắc</a></li>
+            <li><a href="#combos">Combo gia đình</a></li>
+            <li><a href="#stores">Hệ thống chi nhánh</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Thông tin</h4>
+          <ul class="footer-links">
+            <li><a href="#booking">Đặt bàn trực tuyến</a></li>
+            <li><a href="#">Chính sách giao hàng</a></li>
+            <li><a href="#">Bảo mật thông tin</a></li>
+            <li><a href="#">Tuyển dụng</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>⚠️ <em>Dự án học tập – không phải website chính thức.</em></p>
+        <p>© 2026 Gà Rán. Xây dựng hoàn toàn bằng Vanilla HTML/CSS/JS & dữ liệu CSV.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== S6. CART DRAWER ==================== -->
+  <div id="cart-drawer-overlay" class="drawer-overlay" aria-hidden="true"></div>
+  <aside id="cart-drawer" class="cart-drawer" aria-hidden="true" aria-label="Giỏ hàng">
+    <div class="drawer-header">
+      <h3>Giỏ Hàng 🛒</h3>
+      <button id="btn-close-cart" class="btn-close-drawer" aria-label="Đóng giỏ hàng">✕</button>
+    </div>
+
+    <div id="cart-items-container" class="cart-items-wrap">
+      <!-- JS render các món trong giỏ -->
+    </div>
+
+    <div class="drawer-footer">
+      <div class="promo-input-row">
+        <input type="text" id="input-promo-code" placeholder="MÃ GIẢM GIÁ" aria-label="Nhập mã giảm giá">
+        <button id="btn-apply-promo" class="btn btn-secondary">Áp dụng</button>
+      </div>
+      <div id="cart-promo-status" class="cart-promo-status"></div>
+
+      <div class="cart-summary-totals">
+        <div class="row">
+          <span>Tạm tính:</span>
+          <span id="cart-subtotal">0 ₫</span>
+        </div>
+        <div class="row" style="color: var(--color-success);">
+          <span>Giảm giá:</span>
+          <span id="cart-discount">-0 ₫</span>
+        </div>
+        <div class="row total-row">
+          <span>Tổng cộng:</span>
+          <span id="cart-total">0 ₫</span>
+        </div>
+      </div>
+
+      <button id="btn-checkout" class="btn btn-primary btn-checkout-drawer" disabled>
+        Xác nhận đơn hàng
+      </button>
+    </div>
+  </aside>
+
+  <!-- ==================== CHECKOUT MODAL ==================== -->
+  <div id="checkout-modal" class="modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-dialog modal-dialog-lg">
+      <!-- Nội dung được render động bởi module js/checkout.js -->
+    </div>
+  </div>
+
+  <!-- ==================== TOAST & BACK TO TOP ==================== -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <button id="btn-back-to-top" class="btn-back-to-top" aria-label="Lên đầu trang">↑</button>
+
+  <!-- ==================== ES MODULE ENTRY POINT ==================== -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
